@@ -1,0 +1,7 @@
+br\edu\ifsul\condominiomodel\Condominio.class
+br\edu\ifsul\condominiomodel\Locatario.class
+br\edu\ifsul\condominiomodel\Mensalidades.class
+br\edu\ifsul\condominiomodel\Recurso.class
+br\edu\ifsul\condominiomodel\Pessoa.class
+br\edu\ifsul\condominiomodel\UnidadeCondominal.class
+br\edu\ifsul\condominiomodel\Aluguel.class
