@@ -1,16 +1,16 @@
 package br.edu.ifsul.condominiomodel;
 
-import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Id;
+import java.io.Serializable;
+import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
@@ -19,6 +19,7 @@ import org.hibernate.validator.constraints.Length;
  *
  * @author Jakelyny Sousa
  */
+
 @Entity
 @Table(name="unidade_condominal")
 public class UnidadeCondominal implements Serializable{
@@ -46,7 +47,7 @@ public class UnidadeCondominal implements Serializable{
 
     @NotNull(message = "O proprietario deve ser informado")
     @ManyToOne
-    @JoinColumn(name="proprietario", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name="proprietario", referencedColumnName = "cpf", nullable = false)
     private Pessoa proprietario;
     
     @NotNull(message = "O condominio deve ser informado")
@@ -55,6 +56,7 @@ public class UnidadeCondominal implements Serializable{
     private Condominio condominio;
     
     public UnidadeCondominal() {
+        
     }
 
     public Integer getId() {
@@ -111,9 +113,7 @@ public class UnidadeCondominal implements Serializable{
 
     public void setCondominio(Condominio condominio) {
         this.condominio = condominio;
-    }
-
-    
+    } 
     
     @Override
     public int hashCode() {
@@ -135,7 +135,5 @@ public class UnidadeCondominal implements Serializable{
         }
         final UnidadeCondominal other = (UnidadeCondominal) obj;
         return Objects.equals(this.id, other.id);
-    }
-    
-    
+    }    
 }

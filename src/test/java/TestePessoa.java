@@ -7,6 +7,7 @@ import javax.persistence.Persistence;
  *
  * @author Jakelyny Sousa
  */
+
 public class TestePessoa {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PW-2022-1-Model-CondominioPU");

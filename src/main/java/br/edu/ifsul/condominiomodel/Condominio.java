@@ -24,6 +24,7 @@ import org.hibernate.validator.constraints.Length;
  *
  * @author Jakelyny Sousa
  */
+
 @Entity
 @Table(name="condominio")
 public class Condominio implements Serializable{
@@ -65,6 +66,7 @@ public class Condominio implements Serializable{
     private List<UnidadeCondominal> unidadeCondominal = new ArrayList<>();
 
     public Condominio() {
+        
     }
 
     public void adicionarUnidadeCondominal(UnidadeCondominal obj){
@@ -131,8 +133,7 @@ public class Condominio implements Serializable{
     public void setUnidadeCondominal(List<UnidadeCondominal> unidadeCondominal) {
         this.unidadeCondominal = unidadeCondominal;
     }
-
-    
+  
     @Override
     public int hashCode() {
         int hash = 3;
@@ -153,7 +154,5 @@ public class Condominio implements Serializable{
         }
         final Condominio other = (Condominio) obj;
         return Objects.equals(this.id, other.id);
-    }
-    
-    
+    }   
 }

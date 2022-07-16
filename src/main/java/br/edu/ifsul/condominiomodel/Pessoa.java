@@ -1,16 +1,19 @@
 package br.edu.ifsul.condominiomodel;
 
+import java.util.Set;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.InheritanceType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
@@ -19,45 +22,49 @@ import org.hibernate.validator.constraints.Length;
  *
  * @author Jakelyny Sousa
  */
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="pessoa")
 public class Pessoa implements Serializable{
     @Id
-    @SequenceGenerator(name = "seq_pessoa", sequenceName = "seq_pessoa_id", allocationSize = 1)
-    @GeneratedValue(generator = "seq_pessoa", strategy = GenerationType.SEQUENCE)
-    private Integer id;
+    @NotBlank(message = "O cpf precisa ser preenchido")
+    @Length(max=11, message = "O cpf não pode ter mais que {max} caracteres")
+    @Column(name="cpf", nullable = false, length = 11)
+    private String cpf;
     
     @NotBlank(message = "O nome precisa ser preenchido")
     @Length(max=40, message = "O nome não pode ter mais que {max} caracteres")
     @Column(name="nome", nullable = false, length = 40)
     private String nome;
     
-    @NotBlank(message = "O cpf precisa ser preenchido")
-    @Length(max=11, message = "O cpf não pode ter mais que {max} caracteres")
-    @Column(name="cpf", nullable = false, length = 11)
-    private String cpf;
-    
     @NotBlank(message = "O telefone precisa ser preenchido")
     @Length(max=13, message = "O telefone não pode ter mais que {max} caracteres")
     @Column(name="telefone", nullable = false, length = 13)
     private String telefone;
+    
+    @NotBlank(message = "A senha deve ser informada")
+    @Length(max = 20, message = "A senha não pode ter mais que {max} caracteres")    
+    @Column(name = "senha", length = 20, nullable = false)    
+    private String senha;
     
     @NotBlank(message = "O email precisa ser preenchido")
     @Length(max=40, message = "O email não pode ter mais que {max} caracteres")
     @Column(name="email", nullable = false, length = 40)
     @Email
     private String email;
+    
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "permissoes", 
+            joinColumns = 
+                    @JoinColumn(name = "cpf", referencedColumnName = "cpf", 
+                            nullable = false), 
+            inverseJoinColumns = 
+                    @JoinColumn(name = "permissao", referencedColumnName = "nome", nullable = false))
+    private Set<Permissao> permissoes = new HashSet<>();
 
     public Pessoa() {
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+        
     }
 
     public String getNome() {
@@ -92,10 +99,26 @@ public class Pessoa implements Serializable{
         this.email = email;
     }
 
+    public Set<Permissao> getPermissoes() {
+        return permissoes;
+    }
+
+    public void setPermissoes(Set<Permissao> permissoes) {
+        this.permissoes = permissoes;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 59 * hash + Objects.hashCode(this.cpf);
         return hash;
     }
 
@@ -111,6 +134,6 @@ public class Pessoa implements Serializable{
             return false;
         }
         final Pessoa other = (Pessoa) obj;
-        return Objects.equals(this.id, other.id);
-    }    
+        return Objects.equals(this.cpf, other.cpf);
+    } 
 }

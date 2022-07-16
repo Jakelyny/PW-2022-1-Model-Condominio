@@ -20,6 +20,7 @@ import javax.validation.constraints.NotNull;
  *
  * @author Jakelyny Sousa
  */
+
 @Entity
 @Table(name="mensalidades")
 public class Mensalidades implements Serializable{
@@ -51,6 +52,7 @@ public class Mensalidades implements Serializable{
     private Aluguel aluguel;
 
     public Mensalidades() {
+        
     }
 
     public Integer getId() {
@@ -121,8 +123,5 @@ public class Mensalidades implements Serializable{
         }
         final Mensalidades other = (Mensalidades) obj;
         return Objects.equals(this.id, other.id);
-    }
-    
-    
-    
+    }   
 }

@@ -25,6 +25,7 @@ import javax.validation.constraints.NotNull;
  *
  * @author Jakelyny Sousa
  */
+
 @Entity
 @Table(name="aluguel")
 public class Aluguel implements Serializable{
@@ -57,7 +58,7 @@ public class Aluguel implements Serializable{
     
     @NotNull(message = "O locatario deve ser informado")
     @ManyToOne
-    @JoinColumn(name="locatario", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name="locatario", referencedColumnName = "cpf", nullable = false)
     private Locatario locatario;
     
     @NotNull(message = "A Unidade Condominal deve ser informado")
@@ -73,9 +74,9 @@ public class Aluguel implements Serializable{
     public void removerMensalidade(int index){
         this.mensalidades.remove(index);
     }
-  
-    
+      
     public Aluguel() {
+        
     }
 
     public Integer getId() {
@@ -142,9 +143,6 @@ public class Aluguel implements Serializable{
         this.unidadeCondominal = unidadeCondominal;
     }
     
-    
-    
-
     @Override
     public int hashCode() {
         int hash = 7;
@@ -166,5 +164,4 @@ public class Aluguel implements Serializable{
         final Aluguel other = (Aluguel) obj;
         return Objects.equals(this.id, other.id);
     }
-
 }

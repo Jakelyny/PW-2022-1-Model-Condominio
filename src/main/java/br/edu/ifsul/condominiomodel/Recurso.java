@@ -1,14 +1,14 @@
 package br.edu.ifsul.condominiomodel;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.Id;
+import java.io.Serializable;
+import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -21,6 +21,7 @@ import org.hibernate.validator.constraints.Length;
  *
  * @author Jakelyny Sousa
  */
+
 @Entity
 @Table(name="recurso")
 public class Recurso implements Serializable{
@@ -45,6 +46,7 @@ public class Recurso implements Serializable{
     private List<Condominio> condominios = new ArrayList<>();
 
     public Recurso() {
+        
     }
     
     public Integer getId() {
@@ -70,8 +72,6 @@ public class Recurso implements Serializable{
     public void setCondominios(List<Condominio> condominios) {
         this.condominios = condominios;
     }
-    
-    
 
     @Override
     public int hashCode() {
@@ -93,8 +93,5 @@ public class Recurso implements Serializable{
         }
         final Recurso other = (Recurso) obj;
         return Objects.equals(this.id, other.id);
-    }
-    
-    
-    
+    }   
 }

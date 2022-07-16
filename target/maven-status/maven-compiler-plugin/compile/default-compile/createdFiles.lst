@@ -1,4 +1,5 @@
 br\edu\ifsul\condominiomodel\Condominio.class
+br\edu\ifsul\condominiomodel\Permissao.class
 br\edu\ifsul\condominiomodel\Locatario.class
 br\edu\ifsul\condominiomodel\Mensalidades.class
 br\edu\ifsul\condominiomodel\Recurso.class

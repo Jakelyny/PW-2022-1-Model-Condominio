@@ -13,6 +13,7 @@ import org.hibernate.validator.constraints.Length;
  *
  * @author Jakelyny Sousa
  */
+
 @Entity
 @Table(name="locatario")
 public class Locatario extends Pessoa implements Serializable {
@@ -32,6 +33,7 @@ public class Locatario extends Pessoa implements Serializable {
     private String telefoneTrabalho;
 
     public Locatario() {
+        
     }
 
     public Double getRenda() {
@@ -78,7 +80,5 @@ public class Locatario extends Pessoa implements Serializable {
         }
         final Locatario other = (Locatario) obj;
         return Objects.equals(this.renda, other.renda);
-    }
-    
-    
+    }  
 }
